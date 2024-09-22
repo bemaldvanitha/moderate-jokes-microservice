@@ -6,6 +6,9 @@ const swaggerUi = require('swagger-ui-express');
 const authRoutes = require("./routes/authRoutes");
 const moderateRoutes = require("./routes/moderateRoutes");
 
+const sequelize = require('./config/db');
+const User = require('./models/User');
+
 const PORT = process.env.PORT || 4002;
 const app = express();
 
@@ -35,6 +38,13 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use('/auth', authRoutes);
 app.use('/', moderateRoutes);
+
+const syncAllModels = async () => {
+    await sequelize.sync();
+    await User.sync();
+}
+
+syncAllModels();
 
 app.listen(PORT, () => {
     console.log(`Moderate jokes microservice running on port ${PORT}`);
