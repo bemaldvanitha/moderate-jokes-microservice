@@ -23,6 +23,11 @@ const getNonModeratedJoke = async (req, res) => {
         res.status(200).json({ joke: message });
     }catch (error){
         console.error(error);
+
+        if (error.response && error.response.status === 404) {
+            return res.status(404).json({ message: 'No pending jokes found' });
+        }
+
         res.status(500).json({ message: 'Server error'});
     }
 }
