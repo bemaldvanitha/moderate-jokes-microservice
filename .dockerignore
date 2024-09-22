@@ -1,0 +1,27 @@
+# Node modules
+node_modules
+npm-debug.log
+
+# Logs
+logs
+*.log
+
+# Local environment files
+.env
+.env.development
+
+# Git files
+.git
+.gitignore
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode
+.idea
+*.sublime-project
+*.sublime-workspace
